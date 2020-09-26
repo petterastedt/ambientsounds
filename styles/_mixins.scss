@@ -1,0 +1,55 @@
+//Mixins goes here
+
+@mixin create-list($margin: 10px) {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  >li {
+    margin-right: $margin;
+    padding-left: 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &::before {
+      content: none;
+    }
+  }
+}
+
+@mixin grid(
+  $columns,
+  $alignment: flex-start,
+  $gutter-horizontal: $gutter-width,
+  $gutter-vertical: $gutter-width
+) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $alignment;
+  width: 100%;
+
+  > * {
+    width: calc((#{100% / $columns}) -
+    (#{$columns - 1} / #{$columns} * #{$gutter-horizontal}));
+
+    &:nth-child(n) {
+      margin-right: $gutter-horizontal;
+      margin-top: 0;
+    }
+
+    &:nth-child(1n + #{$columns + 1}) {
+      margin-top: $gutter-vertical;
+    }
+
+    &:nth-child(#{$columns}n) {
+      margin-right: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

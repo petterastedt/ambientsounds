@@ -1,0 +1,161 @@
+// Base styles
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital@0;1&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
+@import './variables';
+@import './mixins';
+@import './animations';
+@import './index';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  transition: background-color 0.5s ease-in-out;
+
+  h1 {
+    font-size: $font-size-large;
+    margin: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  h2 {
+    font-family: 'IBM Plex Serif', serif;
+    font-size: $font-size-medium;
+    font-style: italic;
+    font-weight: 600;
+    margin: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-large;
+    }
+  }
+
+  h3 {
+    font-size: $font-size-base;
+    font-weight: 500;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-medium;
+    }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    margin: 0;
+    outline: none;
+    padding: 0;
+  }
+}
+
+.container {
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+}
+
+// Helper classes
+
+.underline {
+  position: relative;
+  text-decoration: none;
+
+  &:after {
+    background-color: $color-black;
+    bottom: -2px;
+    content: '';
+    height: 2px;
+    left: 2px;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.3s;
+    width: calc(100% - 2px);
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.boxPadding {
+  padding: $box-padding;
+}
+
+.centerContentMaxWidth {
+  margin: 0 auto;
+  max-width: $content-max-width;
+  padding: 0 $container-padding-mobile;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 0 $container-padding-tablet;
+  }
+
+  @media (min-width: $breakpoint-tablet-horizontal) {
+    padding: 0 $container-padding-desktop;
+  }
+}
+
+// Themes
+
+.theme--ocean {
+  // background-color: $color-ocean;
+
+  .item {
+    &-content-title {
+      color: $color-ocean;
+    }
+  }
+}
+
+.theme--rain {
+  // background-color: $color-rain;
+
+  .item {
+    &-content-title {
+      color: $color-rain;
+    }
+  }
+}
+
+.theme--city {
+  // background-color: $color-city;
+
+  .item {
+    &-content-title {
+      color: $color-city;
+    }
+  }
+}
+
+.theme--storm {
+  // background-color: $color-storm;
+
+  .item {
+    &-content-title {
+      color: $color-storm;
+    }
+  }
+}
