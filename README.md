@@ -1,6 +1,6 @@
 ## Ambient sounds 🧘
 
-I created this project to practice writing vanila javascript since I mostly use frameworks and libraries both at work and private. This one I wrote using only javascript, html and scss.
+I created this project to try building something simple with vanila javascript since I mostly use frameworks and libraries both at work and private. This one I wrote using only javascript, html and scss.
 
 Features:
 - Plays background video with a "playlist" of sounds corresponding to the current category.
@@ -12,7 +12,8 @@ All sounds and videos are royalty free!
 
 ## TODO:
 
-- [ ] ~~Refactor javascript/css~~
-- [ ] ~~Add full mobile support~~
-- [ ] ~~Testing~~
-- [ ] ~~Deploy~~
+- [ ] Refactor javascript/css
+- [ ] Add full mobile support
+- [ ] Add real content
+- [ ] Testing
+- [ ] Deploy

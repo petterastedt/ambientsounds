@@ -1,7 +1,9 @@
 //Run onLoad
 (() => {
+  const firstItem = cards.length - 1
   renderCards()
-  changeVideo(cards.length - 1)
+  changeVideo(firstItem)
+  changeAudio(firstItem)
 })()
 
 let isDisabled = false
@@ -91,6 +93,7 @@ function changeAudio (pos, sound) {
   audioSource.setAttribute('src', track)
   audio.load()
   audio.play()
+  audio.volume = 1
 }
 
 // Event listeners
@@ -132,10 +135,9 @@ document.body.onkeyup = (e) => {
 
     if (cards[position].video) {
       changeVideo(position)
-    } else {
-      changeBackground(position)
     }
 
+    changeBackground(position)
     changeAudio(position)
 
     setTimeout(() => isDisabled = false, 1000)
@@ -144,7 +146,6 @@ document.body.onkeyup = (e) => {
 
 cardItems.forEach(item => {
   const overlay = document.querySelector('.overlay')
-
   const cardList = document.querySelector('.cards')
   const list = Array.from(item.children[0].children[0].children[3].children)
   const buttonVolume = item.children[0].children[0].children[0]

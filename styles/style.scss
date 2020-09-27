@@ -159,3 +159,13 @@ body {
     }
   }
 }
+
+.theme--fireplace {
+  // background-color: $color-storm;
+
+  .item {
+    &-content-title {
+      color: $color-fire;
+    }
+  }
+}

@@ -1,5 +1,14 @@
 const cards = [
   {
+    "title": "fireplace",
+    "video": "/assets/video/fire.mp4",
+    "sounds": [{
+      title: "Fire burning slow",
+      url: "https://freesound.org/data/previews/263/263994_3076984-lq.mp3"
+    }],
+    "textContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis saepe quidem quia, quisquam repellendus ut laboriosam deleniti rerum asperiores. Consectetur itaque impedit minus dolorum fugiat?"
+  },
+  {
     "title": "city",
     "video": "/assets/video/city.mp4",
     "sounds": [
@@ -46,5 +55,5 @@ const cards = [
       url: "https://www.freesoundslibrary.com/wp-content/uploads/2020/08/heavy-rain-and-thunder-sounds-8-minutes.mp3"
     }],
     "textContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis saepe quidem quia, quisquam repellendus ut laboriosam deleniti rerum asperiores. Consectetur itaque impedit minus dolorum fugiat?"
-  },
+  }
 ]
