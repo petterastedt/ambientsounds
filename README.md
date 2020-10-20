@@ -13,7 +13,7 @@ All sounds and videos are royalty free!
 ## TODO:
 
 - [ ] Refactor javascript/css
-- [ ] Add full mobile support incl. swipe
+- [x] ~~Add full mobile support incl. swipe~~
 - [ ] Add real content
 - [ ] Testing
 - [ ] Deploy

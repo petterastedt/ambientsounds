@@ -6,9 +6,12 @@ let isMuted
 (() => {
   const firstItem = cards.length - 1
   renderCards()
+  setToolTip()
   changeVideo(firstItem)
   changeAudio(firstItem)
 })()
+
+// Render Cards
 
 function renderCards () {
   const cardList = document.querySelector('.cards-list')
@@ -39,6 +42,19 @@ function renderCards () {
   })
 }
 
+function setToolTip () {
+  const toolTipTop = document.querySelector('.cards-info-top')
+  const toolTipBottom = document.querySelector('.cards-info-bottom')
+
+  if (window.innerWidth >= 1024) {
+    toolTipTop.textContent = 'Click the background to minimize the card!'
+    toolTipBottom.textContent = 'Hit space to change the category'
+  } else {
+    toolTipTop.textContent = 'Tap the background to minimize the card!'
+    toolTipBottom.textContent = 'Swipe to change the category'
+  }
+}
+
 function changeBackground (pos) {
   const category = cardItems[pos].getAttribute('data-category')
   const body = document.querySelector('body')
@@ -59,17 +75,17 @@ function changeVideo (pos) {
   setTimeout(() => {
     let videoUrl
 
-    if (window.innerWidth >= 1920) {
+    if (window.innerWidth >= 1440) {
       videoUrl = `${cards[pos].video.slice(0,-4)}_1920.mp4`
     } else if (window.innerWidth > 1024) {
       videoUrl = `${cards[pos].video.slice(0,-4)}_720.mp4`
     } else {
       videoUrl = `${cards[pos].video.slice(0,-4)}_540.mp4`
+      console.log(videoUrl)
     }
 
     video.pause()
     video.currentTime = 0
-
     videoSource.setAttribute('src', videoUrl)
     video.load()
     video.play()
@@ -103,51 +119,60 @@ function changeAudio (pos, sound) {
   }
 }
 
+function changeCard () {
+  isDisabled = true
+  cardInfo.style.opacity = 0
+
+  cardItems[position].classList.add('cards-list-item--rolledOut')
+  cardItems[position].classList.remove('active')
+
+  position--
+
+  if (position === -1) {
+    const cardList = document.querySelector('.cards-list')
+    cardItems[0].classList.add('cards-list-item--rolledOut')
+    cardList.style.opacity = 0
+
+    setTimeout(() => {
+      cardItems.forEach(item => {
+        item.classList.remove('cards-list-item--rolledOut')
+      })
+    }, 1000)
+
+    setTimeout(() => {
+      cardList.style.opacity = 1
+    }, 1000)
+
+    position = cardItems.length - 1
+  }
+
+  cardItems[position].classList.add('active')
+
+  if (cards[position].video) {
+    changeVideo(position)
+  }
+
+  changeBackground(position)
+  changeAudio(position)
+
+  setTimeout(() => isDisabled = false, 1000)
+}
+
 // Event listeners
 
 const cardItems = document.querySelectorAll('.cards-list-item')
 const cardInfo = document.querySelector('.cards-info')
-
 let position = cardItems.length - 1
+
+document.addEventListener('swiped', (e) => {
+  if (!isDisabled) {
+    changeCard()
+  }
+})
 
 document.body.onkeyup = (e) => {
   if (e.keyCode == 32 && !isDisabled) {
-    isDisabled = true
-    cardInfo.style.opacity = 0
-
-    cardItems[position].classList.add('cards-list-item--rolledOut')
-    cardItems[position].classList.remove('active')
-
-    position--
-
-    if (position === -1) {
-      const cardList = document.querySelector('.cards-list')
-      cardItems[0].classList.add('cards-list-item--rolledOut')
-      cardList.style.opacity = 0
-
-      setTimeout(() => {
-        cardItems.forEach(item => {
-          item.classList.remove('cards-list-item--rolledOut')
-        })
-      }, 1000)
-
-      setTimeout(() => {
-        cardList.style.opacity = 1
-      }, 1000)
-
-      position = cardItems.length - 1
-    }
-
-    cardItems[position].classList.add('active')
-
-    if (cards[position].video) {
-      changeVideo(position)
-    }
-
-    changeBackground(position)
-    changeAudio(position)
-
-    setTimeout(() => isDisabled = false, 1000)
+    changeCard()
   }
 }
 

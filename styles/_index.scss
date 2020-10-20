@@ -1,5 +1,6 @@
 #video,
-.overlay {
+.overlay,
+.blurOverlay {
   object-fit: cover;
   height: 100vh;
   position: absolute;
@@ -99,6 +100,7 @@
       animation-delay: 2s;
       background: rgba(0, 0, 0, 0.5);
       color: $color-white;
+      font-style: italic;
       opacity: 0;
       padding: 1px 6px;
     }
@@ -108,8 +110,9 @@
       display: flex;
       justify-content: flex-start;
       left: 0;
-      top: -22px ;
+      top: -22px;
       position: absolute;
+      width: 100%;
 
       @media (min-width: $breakpoint-tablet) {
         left: -225px;
