@@ -1,12 +1,14 @@
+let isDisabled
+let isMuted
+
 //Run onLoad
+
 (() => {
   const firstItem = cards.length - 1
   renderCards()
   changeVideo(firstItem)
   changeAudio(firstItem)
 })()
-
-let isDisabled = false
 
 function renderCards () {
   const cardList = document.querySelector('.cards-list')
@@ -93,7 +95,12 @@ function changeAudio (pos, sound) {
   audioSource.setAttribute('src', track)
   audio.load()
   audio.play()
-  audio.volume = 1
+
+  if (isMuted) {
+    audio.volume = 0
+  } else {
+    audio.volume = 1
+  }
 }
 
 // Event listeners
@@ -149,6 +156,7 @@ cardItems.forEach(item => {
   const cardList = document.querySelector('.cards')
   const list = Array.from(item.children[0].children[0].children[3].children)
   const buttonVolume = item.children[0].children[0].children[0]
+  const buttonVolumeAll = document.querySelectorAll('.item-content-buttonVolume')
   const buttonNext = item.children[0].children[0].children[1]
   let cardIndex = 0
   let minimized = false
@@ -174,13 +182,22 @@ cardItems.forEach(item => {
   })
 
   buttonVolume.addEventListener('click', () => {
-    if (audio.volume === 0) {
+    if (audio.volume === 0 && !isDisabled) {
       audio.volume = 1
-    } else {
-      audio.volume = 0
-    }
+      isMuted = false
 
-    buttonVolume.classList.toggle('item-content-buttonVolume--isMuted')
+      buttonVolumeAll.forEach(button => {
+        button.classList.remove('item-content-buttonVolume--isMuted')
+      })
+
+    } else if (audio.volume !== 0 && !isDisabled) {
+      audio.volume = 0
+      isMuted = true
+
+      buttonVolumeAll.forEach(button => {
+        button.classList.add('item-content-buttonVolume--isMuted')
+      })
+    }
   })
 
   overlay.addEventListener('click', () => {
