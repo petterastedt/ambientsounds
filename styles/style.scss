@@ -1,14 +1,19 @@
 // Base styles
-
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital@0;1&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
 @import './variables';
 @import './mixins';
 @import './animations';
 @import './index';
 
+:root {
+  --vh: 1px;
+}
+
 html,
 body {
+  height: calc(var(--vh, 1vh) * 100);
   margin: 0;
+  overflow: hidden;
   padding: 0;
 }
 
@@ -116,7 +121,6 @@ body {
 }
 
 .container {
-  min-height: 100vh;
   margin: 0 auto;
   overflow: hidden;
   position: relative;

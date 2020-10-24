@@ -41,7 +41,7 @@
 .overlay,
 .blurOverlay {
   object-fit: cover;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   position: absolute;
   width: 100%; }
 
@@ -264,9 +264,14 @@
   animation: fadeInLeft 0.5s ease-in-out forwards;
   animation-delay: 0.75s; }
 
+:root {
+  --vh: 1px; }
+
 html,
 body {
+  height: calc(var(--vh, 1vh) * 100);
   margin: 0;
+  overflow: hidden;
   padding: 0; }
 
 body {
@@ -345,7 +350,6 @@ body.theme--fireplace .item-content-title {
   color: #ed553b; }
 
 .container {
-  min-height: 100vh;
   margin: 0 auto;
   overflow: hidden;
   position: relative; }

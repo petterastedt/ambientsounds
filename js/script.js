@@ -1,6 +1,11 @@
 let isDisabled
 let isMuted
 
+// Viewport height fix for mobile
+
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 //Run onLoad
 
 (() => {
@@ -163,6 +168,7 @@ const cardItems = document.querySelectorAll('.cards-list-item')
 const cardInfo = document.querySelector('.cards-info')
 let position = cardItems.length - 1
 
+
 document.addEventListener('swiped-left', (e) => {
   if (!isDisabled) {
     changeCard()
@@ -180,6 +186,11 @@ document.body.onkeyup = (e) => {
     changeCard()
   }
 }
+
+window.addEventListener('resize', () => {
+  let vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
+})
 
 cardItems.forEach(item => {
   const overlay = document.querySelector('.overlay')
