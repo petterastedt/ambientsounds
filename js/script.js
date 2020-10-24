@@ -81,7 +81,6 @@ function changeVideo (pos) {
       videoUrl = `${cards[pos].video.slice(0,-4)}_720.mp4`
     } else {
       videoUrl = `${cards[pos].video.slice(0,-4)}_540.mp4`
-      console.log(videoUrl)
     }
 
     video.pause()
@@ -164,7 +163,13 @@ const cardItems = document.querySelectorAll('.cards-list-item')
 const cardInfo = document.querySelector('.cards-info')
 let position = cardItems.length - 1
 
-document.addEventListener('swiped', (e) => {
+document.addEventListener('swiped-left', (e) => {
+  if (!isDisabled) {
+    changeCard()
+  }
+})
+
+document.addEventListener('swiped-right', (e) => {
   if (!isDisabled) {
     changeCard()
   }

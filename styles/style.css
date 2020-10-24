@@ -41,9 +41,9 @@
 .overlay,
 .blurOverlay {
   object-fit: cover;
-  height: 100vh;
+  height: 100%;
   position: absolute;
-  width: 100vw; }
+  width: 100%; }
 
 #video {
   z-index: -2; }
